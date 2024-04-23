@@ -6,7 +6,6 @@ import asyncio
 import sys
 import logging
 
-
 try:
     import win32com
     import win32com.server.util
@@ -93,7 +92,8 @@ class Controller:
         'ChangedBrightnessLEDs',
         'ChangedFlashers',
         'HardwareRules',
-        'GetMech'
+        'GetMech',
+        'ChangedSegmentDisplayText'
     ]
 
     _readonly_attrs_ = [
@@ -105,7 +105,8 @@ class Controller:
         'ChangedBrightnessLEDs',
         'ChangedFlashers',
         'HardwareRules',
-        'GetMech'
+        'GetMech',
+        'ChangedSegmentDisplayText',
     ]
 
     Version = "22222222"
@@ -248,11 +249,11 @@ class Controller:
     def ChangedLEDs(self):
         """Return a list of changed lamps."""
         return self._dispatch_to_mpf("changed_leds")
-        
+
     def ChangedBrightnessLEDs(self):
         """Return a list of changed LEDs with brightness vlaues as floats."""
         return self._dispatch_to_mpf("changed_brightness_leds")
-        
+
     def ChangedFlashers(self):
         """Return a list of changed GI strings."""
         return self._dispatch_to_mpf("changed_flashers")
@@ -264,6 +265,10 @@ class Controller:
     def IsCoilActive(self, number):
         """Return True if a MPF Hardware Rule for the coil(number) exists."""
         return self._dispatch_to_mpf("get_coilactive", number=number)
+    
+    def ChangedSegmentDisplayText(self):
+        """Return the changed text configured segment displays."""
+        return self._dispatch_to_mpf("changed_segment_text")    
 
 
 def Register(pyclass=Controller, p_game=None):

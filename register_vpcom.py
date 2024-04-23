@@ -92,7 +92,8 @@ class Controller:
         'ChangedBrightnessLEDs',
         'ChangedFlashers',
         'HardwareRules',
-        'GetMech'
+        'GetMech',
+        'ChangedSegmentDisplayText'
     ]
 
     _readonly_attrs_ = [
@@ -104,7 +105,8 @@ class Controller:
         'ChangedBrightnessLEDs',
         'ChangedFlashers',
         'HardwareRules',
-        'GetMech'
+        'GetMech',
+        'ChangedSegmentDisplayText',
     ]
 
     Version = "22222222"
@@ -263,6 +265,10 @@ class Controller:
     def IsCoilActive(self, number):
         """Return True if a MPF Hardware Rule for the coil(number) exists."""
         return self._dispatch_to_mpf("get_coilactive", number=number)
+    
+    def ChangedSegmentDisplayText(self):
+        v
+        return self._dispatch_to_mpf("changed_segment_text")    
 
 
 def Register(pyclass=Controller, p_game=None):
